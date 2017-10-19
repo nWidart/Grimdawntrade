@@ -4,6 +4,7 @@ namespace Modules\User\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Maatwebsite\Sidebar\Domain\Events\FlushesSidebarCache;
+use Modules\User\Events\Handlers\CreateApiToken;
 use Modules\User\Events\Handlers\SendRegistrationConfirmationEmail;
 use Modules\User\Events\Handlers\SendResetCodeEmail;
 use Modules\User\Events\RoleWasUpdated;
@@ -16,6 +17,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         UserHasRegistered::class => [
             // SendRegistrationConfirmationEmail::class,
+            CreateApiToken::class,
         ],
         UserHasBegunResetProcess::class => [
             SendResetCodeEmail::class,
