@@ -13,7 +13,10 @@ class AuctionTransformer extends Resource
             'time_ago' => $this->created_at->diffForHumans(),
             'item' => new ItemTransformer($this->item),
             'user' => [
+                'id' => $this->user->id,
+                'steam_profile' => $this->user->steam_profile,
             ],
+            'prices' => $this->prices->load(['rarity', 'type']),
         ];
     }
 }

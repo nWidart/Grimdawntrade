@@ -68,10 +68,24 @@
                             v-loading.body="tableIsLoading">
                         <el-table-column type="expand">
                             <template slot-scope="props">
-                                <p><strong>Type</strong>: {{ props.row.item.type.name }}</p>
-                                <p><strong>Rarity</strong>: {{ props.row.item.rarity.name }}</p>
-                                <p><strong>Mythical</strong>: {{ props.row.item.is_mythical ? 'Yes' : 'No' }}</p>
-                                <p><strong>Level requirement</strong>: {{ props.row.item.level }}</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Type</strong>: {{ props.row.item.type.name }}</p>
+                                        <p><strong>Rarity</strong>: {{ props.row.item.rarity.name }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Mythical</strong>: {{ props.row.item.is_mythical ? 'Yes' : 'No' }}</p>
+                                        <p><strong>Level requirement</strong>: {{ props.row.item.level }}</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div v-if="props.row.prices.length > 0">
+                                            <strong>Wanted items:</strong>
+                                            <span v-for="(item, idx) in props.row.prices" :key="idx">
+                                                <span :style="`color: ${getColor(item.rarity)}`">{{ item.name }}</span>,
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -159,6 +173,12 @@
                         this.tableIsLoading = false;
                         this.auctions = response.data.data;
                     });
+            },
+            getColor(rarity) {
+                if (rarity !== null) {
+                    return rarity.color;
+                }
+                return '#000';
             },
         },
         mounted() {
