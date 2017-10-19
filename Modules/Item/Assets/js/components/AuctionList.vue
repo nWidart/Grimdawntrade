@@ -59,8 +59,15 @@
         <div class="col-md-9">
             <div class="box">
                 <div class="box-inner">
-                    <h3 v-if="isLatest">Latest auctions</h3>
-                    <h3 v-if="! isLatest">Search results</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 v-if="isLatest">Latest auctions</h3>
+                            <h3 v-if="! isLatest">Search results</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <el-button class="pull-right" size="small" @click="refreshList()">Refresh</el-button>
+                        </div>
+                    </div>
                     <el-table
                             :data="auctions"
                             style="width: 100%"
@@ -191,6 +198,9 @@
             },
             goToSteamProfile(scope) {
                 window.open(scope.row.user.steam_profile_link, '_blank');
+            },
+            refreshList() {
+                this.searchAuctions();
             },
         },
         mounted() {
