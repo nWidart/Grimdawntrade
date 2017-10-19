@@ -1,0 +1,23 @@
+// Element UI
+@import "~element-ui/lib/theme-default/index.css";
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+$fa-font-path: "~font-awesome/fonts";
+$fa-css-prefix: el-icon-fa;
+@import "~font-awesome/scss/font-awesome";
+[class^="el-icon-fa"], [class*=" el-icon-fa"] {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome!important;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+};
+
+.box {
+  border: 1px solid #eaeefb;
+  border-radius: 4px;
+  .box-inner {
+    padding: 24px;
+  }
+}
