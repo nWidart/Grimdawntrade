@@ -11,5 +11,12 @@ export default [
         path: '/auction/new',
         name: 'auction.new',
         component: AuctionForm,
+        beforeEnter: (to, from, next) => {
+            if (window.AsgardCMS.logged_in === false) {
+                window.location = '/auth/login';
+                return;
+            }
+            next();
+        },
     },
 ];
