@@ -84174,6 +84174,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 
 exports.default = {
     data: function data() {
@@ -84509,7 +84510,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("el-table-column", {
-                  attrs: { label: "Time", prop: "time_ago" }
+                  attrs: { label: "Time", prop: "time_ago", sortable: "" }
                 })
               ],
               1

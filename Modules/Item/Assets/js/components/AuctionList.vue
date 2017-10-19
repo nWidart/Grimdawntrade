@@ -83,7 +83,8 @@
                         </el-table-column>
                         <el-table-column
                                 label="Time"
-                                prop="time_ago">
+                                prop="time_ago"
+                                sortable>
                         </el-table-column>
                     </el-table>
                 </div>
