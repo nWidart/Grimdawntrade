@@ -123,3 +123,14 @@ $router->group(['prefix' => '/user', 'middleware' => ['api.token', 'auth.admin']
         'middleware' => 'token-can:user.roles.index',
     ]);
 });
+
+$router->group(['prefix' => '/account'], function (Router $router) {
+    $router->get('profile', [
+        'as' => 'p.api.account.profile.find-current-user',
+        'uses' => 'PublicProfileController@findCurrentUser',
+    ]);
+    $router->post('profile', [
+        'as' => 'p.api.account.profile.update',
+        'uses' => 'PublicProfileController@update',
+    ]);
+});

@@ -19,6 +19,11 @@
                                     <span slot="title">Register</span>
                                 </el-menu-item>
                             </a>
+                            <el-menu-item index="public.user.account"
+                                          :route="{name: 'public.user.account'}"
+                                          v-if="isLoggedIn() === true">
+                                My account
+                            </el-menu-item>
                             <a href="/auth/logout"  v-if="isLoggedIn() === true">
                                 <el-menu-item index="login">
                                     <span slot="title">Logout</span>

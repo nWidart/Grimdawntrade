@@ -83371,6 +83371,10 @@ var _ItemRoutes = __webpack_require__(559);
 
 var _ItemRoutes2 = _interopRequireDefault(_ItemRoutes);
 
+var _PublicUserRoutes = __webpack_require__(598);
+
+var _PublicUserRoutes2 = _interopRequireDefault(_PublicUserRoutes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -83395,7 +83399,7 @@ var currentLocale = window.AsgardCMS.currentLocale;
 
 var router = new _vueRouter2.default({
     mode: 'history',
-    routes: [].concat(_toConsumableArray(_ItemRoutes2.default))
+    routes: [].concat(_toConsumableArray(_ItemRoutes2.default), _toConsumableArray(_PublicUserRoutes2.default))
 });
 
 var messages = _defineProperty({}, currentLocale, window.AsgardCMS.translations);
@@ -87845,6 +87849,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -87921,58 +87930,92 @@ var render = function() {
                     [_vm._v("My Auctions")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "pull-right" }, [
-                    _vm.isLoggedIn() === false
-                      ? _c(
-                          "a",
-                          { attrs: { href: "/auth/login" } },
-                          [
-                            _c("el-menu-item", { attrs: { index: "login" } }, [
+                  _c(
+                    "div",
+                    { staticClass: "pull-right" },
+                    [
+                      _vm.isLoggedIn() === false
+                        ? _c(
+                            "a",
+                            { attrs: { href: "/auth/login" } },
+                            [
                               _c(
-                                "span",
-                                { attrs: { slot: "title" }, slot: "title" },
-                                [_vm._v("Login")]
+                                "el-menu-item",
+                                { attrs: { index: "login" } },
+                                [
+                                  _c(
+                                    "span",
+                                    { attrs: { slot: "title" }, slot: "title" },
+                                    [_vm._v("Login")]
+                                  )
+                                ]
                               )
-                            ])
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn() === false
-                      ? _c(
-                          "a",
-                          { attrs: { href: "/auth/register" } },
-                          [
-                            _c("el-menu-item", { attrs: { index: "login" } }, [
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.isLoggedIn() === false
+                        ? _c(
+                            "a",
+                            { attrs: { href: "/auth/register" } },
+                            [
                               _c(
-                                "span",
-                                { attrs: { slot: "title" }, slot: "title" },
-                                [_vm._v("Register")]
+                                "el-menu-item",
+                                { attrs: { index: "login" } },
+                                [
+                                  _c(
+                                    "span",
+                                    { attrs: { slot: "title" }, slot: "title" },
+                                    [_vm._v("Register")]
+                                  )
+                                ]
                               )
-                            ])
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn() === true
-                      ? _c(
-                          "a",
-                          { attrs: { href: "/auth/logout" } },
-                          [
-                            _c("el-menu-item", { attrs: { index: "login" } }, [
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.isLoggedIn() === true
+                        ? _c(
+                            "el-menu-item",
+                            {
+                              attrs: {
+                                index: "public.user.account",
+                                route: { name: "public.user.account" }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            My account\n                        "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.isLoggedIn() === true
+                        ? _c(
+                            "a",
+                            { attrs: { href: "/auth/logout" } },
+                            [
                               _c(
-                                "span",
-                                { attrs: { slot: "title" }, slot: "title" },
-                                [_vm._v("Logout")]
+                                "el-menu-item",
+                                { attrs: { index: "login" } },
+                                [
+                                  _c(
+                                    "span",
+                                    { attrs: { slot: "title" }, slot: "title" },
+                                    [_vm._v("Logout")]
+                                  )
+                                ]
                               )
-                            ])
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -87991,6 +88034,290 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-be63e186", module.exports)
+  }
+}
+
+/***/ }),
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _PublicProfile = __webpack_require__(599);
+
+var _PublicProfile2 = _interopRequireDefault(_PublicProfile);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var locales = window.AsgardCMS.locales;
+
+exports.default = [{
+    path: '/account/profile',
+    name: 'public.user.account',
+    component: _PublicProfile2.default
+}];
+
+/***/ }),
+/* 599 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(13)
+/* script */
+var __vue_script__ = __webpack_require__(600)
+/* template */
+var __vue_template__ = __webpack_require__(601)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "Modules/User/Assets/js/components/PublicProfile.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9d3ac356", Component.options)
+  } else {
+    hotAPI.reload("data-v-9d3ac356", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 600 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _axios = __webpack_require__(23);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _formBackendValidation = __webpack_require__(56);
+
+var _formBackendValidation2 = _interopRequireDefault(_formBackendValidation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    data: function data() {
+        return {
+            profile: {},
+            loading: false,
+            form: new _formBackendValidation2.default()
+        };
+    },
+
+    methods: {
+        onSubmit: function onSubmit() {
+            var _this = this;
+
+            this.form = new _formBackendValidation2.default(this.profile);
+            this.loading = true;
+
+            this.form.post(route('p.api.account.profile.update')).then(function (response) {
+                _this.loading = false;
+                _this.$message({
+                    type: 'success',
+                    message: response.message
+                });
+            }).catch(function (error) {
+                console.log(error);
+                _this.loading = false;
+                _this.$notify.error({
+                    title: 'Error',
+                    message: 'There are some errors in the form.'
+                });
+            });
+        },
+        fetchProfile: function fetchProfile() {
+            var _this2 = this;
+
+            this.loading = true;
+            _axios2.default.get(route('p.api.account.profile.find-current-user')).then(function (response) {
+                _this2.loading = false;
+                _this2.profile = response.data.data;
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.fetchProfile();
+    }
+};
+
+/***/ }),
+/* 601 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "box" }, [
+      _c(
+        "div",
+        { staticClass: "box-inner" },
+        [
+          _c(
+            "el-form",
+            {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading.body",
+                  value: _vm.loading,
+                  expression: "loading",
+                  modifiers: { body: true }
+                }
+              ],
+              ref: "form",
+              attrs: { model: _vm.profile, "label-width": "200px" }
+            },
+            [
+              _c("h3", { staticStyle: { "margin-top": "0" } }, [
+                _vm._v(
+                  "\n                    Update your profile\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Display name" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.profile.display_name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.profile, "display_name", $$v)
+                      },
+                      expression: "profile.display_name"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Steam Profile Link" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.profile.steam_profile_link,
+                      callback: function($$v) {
+                        _vm.$set(_vm.profile, "steam_profile_link", $$v)
+                      },
+                      expression: "profile.steam_profile_link"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                [
+                  _c(
+                    "el-button",
+                    { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
+                    [_vm._v("Update")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9d3ac356", module.exports)
   }
 }
 

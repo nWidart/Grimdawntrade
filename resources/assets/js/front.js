@@ -10,6 +10,7 @@ import ElementUI from 'element-ui';
 import VueEvents from 'vue-events';
 import locale from 'element-ui/lib/locale/lang/en';
 import ItemRoutes from '../../../Modules/Item/Assets/js/ItemRoutes';
+import UserRoutes from '../../../Modules/User/Assets/js/PublicUserRoutes';
 
 Vue.use(ElementUI, { locale });
 Vue.use(VueI18n);
@@ -27,6 +28,7 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         ...ItemRoutes,
+        ...UserRoutes,
     ],
 });
 
