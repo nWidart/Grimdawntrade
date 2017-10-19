@@ -13,7 +13,6 @@ class Item extends Model
         'level',
         'type_id',
         'rarity_id',
-        'rarity_id',
     ];
     protected $casts = [
         'is_mythical' => 'bool',

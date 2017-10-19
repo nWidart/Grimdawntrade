@@ -53,6 +53,28 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
+
+                    <hr>
+
+                    <el-form-item label="Price">
+                        <el-select
+                                v-model="trade_for"
+                                filterable
+                                remote
+                                allow-create
+                                placeholder="Start typing item names"
+                                :remote-method="searchTradeForItems"
+                                multiple
+                                :loading="itemsLoading">
+                            <el-option
+                                    v-for="item in tradeForItems"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">Create</el-button>
                         <el-button @click="onCancel">Cancel</el-button>
@@ -77,10 +99,12 @@
                     is_mythical: 0,
                     level: '',
                 },
+                trade_for: [],
                 form: new Form(),
                 types: [],
                 rarities: [],
                 items: [],
+                tradeForItems: [],
                 itemsLoading: false,
                 loading: false,
                 foundItem: false,
@@ -88,7 +112,7 @@
         },
         methods: {
             onSubmit() {
-                this.form = new Form(this.item);
+                this.form = new Form(_.merge(this.item, { trade_for: this.trade_for }));
                 this.loading = true;
 
                 this.form.post(route('api.item.auction.store'))
@@ -131,6 +155,14 @@
                     .then((response) => {
                         this.itemsLoading = false;
                         this.items = response.data.data;
+                    });
+            },
+            searchTradeForItems(query) {
+                this.itemsLoading = true;
+                axios.get(route('api.item.item.search', { query }))
+                    .then((response) => {
+                        this.itemsLoading = false;
+                        this.tradeForItems = response.data.data;
                     });
             },
             fetchTypes() {

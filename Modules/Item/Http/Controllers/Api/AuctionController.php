@@ -60,16 +60,35 @@ class AuctionController extends Controller
 
     public function store(CreateAuctionRequest $request)
     {
-        $item = Item::firstOrCreate($request->all());
+        $item = $this->findItem($request);
 
         $auction = Auction::create([
             'item_id' => $item->id,
             'user_id' => $this->findUserWithBearerToken($request->header('Authorization'))->id,
         ]);
 
+        $auction->prices()->attach($request->get('trade_for'));
+
         return response()->json([
             'errors' => false,
             'message' => 'Auction successfully created.',
         ]);
+    }
+
+    private function findItem(Request $request)
+    {
+        $item = Item::find($request->get('id'));
+
+        if ($item === null) {
+            $item = Item::create($request->only([
+                'name',
+                'is_mythical',
+                'level',
+                'type_id',
+                'rarity_id',
+            ]));
+        }
+
+        return $item;
     }
 }

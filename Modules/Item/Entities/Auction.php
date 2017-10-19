@@ -22,4 +22,9 @@ class Auction extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function prices()
+    {
+        return $this->belongsToMany(Item::class, 'item__prices');
+    }
 }

@@ -83664,6 +83664,28 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -83675,10 +83697,12 @@ exports.default = {
                 is_mythical: 0,
                 level: ''
             },
+            trade_for: [],
             form: new _formBackendValidation2.default(),
             types: [],
             rarities: [],
             items: [],
+            tradeForItems: [],
             itemsLoading: false,
             loading: false,
             foundItem: false
@@ -83689,7 +83713,7 @@ exports.default = {
         onSubmit: function onSubmit() {
             var _this = this;
 
-            this.form = new _formBackendValidation2.default(this.item);
+            this.form = new _formBackendValidation2.default(_.merge(this.item, { trade_for: this.trade_for }));
             this.loading = true;
 
             this.form.post(route('api.item.auction.store')).then(function (response) {
@@ -83734,18 +83758,27 @@ exports.default = {
                 _this3.items = response.data.data;
             });
         },
-        fetchTypes: function fetchTypes() {
+        searchTradeForItems: function searchTradeForItems(query) {
             var _this4 = this;
 
+            this.itemsLoading = true;
+            _axios2.default.get(route('api.item.item.search', { query: query })).then(function (response) {
+                _this4.itemsLoading = false;
+                _this4.tradeForItems = response.data.data;
+            });
+        },
+        fetchTypes: function fetchTypes() {
+            var _this5 = this;
+
             _axios2.default.get(route('api.item.type.index')).then(function (response) {
-                _this4.types = response.data.data;
+                _this5.types = response.data.data;
             });
         },
         fetchRarities: function fetchRarities() {
-            var _this5 = this;
+            var _this6 = this;
 
             _axios2.default.get(route('api.item.rarity.index')).then(function (response) {
-                _this5.rarities = response.data.data;
+                _this6.rarities = response.data.data;
             });
         }
     },
@@ -83926,6 +83959,43 @@ var render = function() {
                       return _c("el-option", {
                         key: rarity.id,
                         attrs: { label: rarity.name, value: rarity.id }
+                      })
+                    })
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Price" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: {
+                        filterable: "",
+                        remote: "",
+                        "allow-create": "",
+                        placeholder: "Start typing item names",
+                        "remote-method": _vm.searchTradeForItems,
+                        multiple: "",
+                        loading: _vm.itemsLoading
+                      },
+                      model: {
+                        value: _vm.trade_for,
+                        callback: function($$v) {
+                          _vm.trade_for = $$v
+                        },
+                        expression: "trade_for"
+                      }
+                    },
+                    _vm._l(_vm.tradeForItems, function(item) {
+                      return _c("el-option", {
+                        key: item.id,
+                        attrs: { label: item.name, value: item.id }
                       })
                     })
                   )
