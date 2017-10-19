@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f6a2b8adbbb84d53d2307c4b8f6e779",
+    "content-hash": "cec7f91257e8e12fb332ab119b3c0cb4",
     "packages": [
         {
             "name": "cartalyst/sentinel",
@@ -1383,53 +1383,6 @@
                 "tree"
             ],
             "time": "2017-10-16T08:02:18+00:00"
-        },
-        {
-            "name": "idavoll/page-module",
-            "version": "3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Idavoll/Page.git",
-                "reference": "990baa6cd791017bd44be43a19ec24150dd3d53c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Idavoll/Page/zipball/990baa6cd791017bd44be43a19ec24150dd3d53c",
-                "reference": "990baa6cd791017bd44be43a19ec24150dd3d53c",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0",
-                "idavoll/tag-module": "~3.0",
-                "php": ">=7.0.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "3.5.*",
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "asgard-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Widart",
-                    "email": "info@asgardcms.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Page module for AsgardCMS. Page management.",
-            "keywords": [
-                "asgardcms",
-                "pages"
-            ],
-            "time": "2017-10-17T09:38:45+00:00"
         },
         {
             "name": "idavoll/setting-module",
