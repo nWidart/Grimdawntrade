@@ -55,7 +55,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">Create</el-button>
-                        <el-button>Cancel</el-button>
+                        <el-button @click="onCancel">Cancel</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -108,6 +108,9 @@
                             message: 'There are some errors in the form.',
                         });
                     });
+            },
+            onCancel() {
+                this.$router.push({ name: 'auction.index' });
             },
             selectItem(item) {
                 if (Number.isInteger(item) === true) {

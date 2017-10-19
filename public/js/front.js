@@ -83708,6 +83708,9 @@ exports.default = {
                 });
             });
         },
+        onCancel: function onCancel() {
+            this.$router.push({ name: 'auction.index' });
+        },
         selectItem: function selectItem(item) {
             if (Number.isInteger(item) === true) {
                 this.findItem(item);
@@ -83939,7 +83942,9 @@ var render = function() {
                     [_vm._v("Create")]
                   ),
                   _vm._v(" "),
-                  _c("el-button", [_vm._v("Cancel")])
+                  _c("el-button", { on: { click: _vm.onCancel } }, [
+                    _vm._v("Cancel")
+                  ])
                 ],
                 1
               )
