@@ -86037,10 +86037,10 @@ var render = function() {
                     {
                       attrs: {
                         index: "my-items",
-                        route: { name: "auction.new" }
+                        route: { name: "auction.owner" }
                       }
                     },
-                    [_vm._v("My items")]
+                    [_vm._v("My Auctions")]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "pull-right" }, [
@@ -86153,6 +86153,10 @@ var _AuctionList = __webpack_require__(587);
 
 var _AuctionList2 = _interopRequireDefault(_AuctionList);
 
+var _MyAuctionsList = __webpack_require__(592);
+
+var _MyAuctionsList2 = _interopRequireDefault(_MyAuctionsList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = [{
@@ -86162,7 +86166,25 @@ exports.default = [{
 }, {
     path: '/auction/new',
     name: 'auction.new',
-    component: _AuctionForm2.default
+    component: _AuctionForm2.default,
+    beforeEnter: function beforeEnter(to, from, next) {
+        if (window.AsgardCMS.logged_in === false) {
+            window.location = '/auth/login';
+            return;
+        }
+        next();
+    }
+}, {
+    path: '/my/auctions',
+    name: 'auction.owner',
+    component: _MyAuctionsList2.default,
+    beforeEnter: function beforeEnter(to, from, next) {
+        if (window.AsgardCMS.logged_in === false) {
+            window.location = '/auth/login';
+            return;
+        }
+        next();
+    }
 }];
 
 /***/ }),
@@ -87196,6 +87218,623 @@ if(false) {
 
 /***/ }),
 /* 591 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(110)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh3 {\n    margin-top: 0;\n}\n.el-select {\n    width: 100%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 592 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(595)
+}
+var normalizeComponent = __webpack_require__(22)
+/* script */
+var __vue_script__ = __webpack_require__(593)
+/* template */
+var __vue_template__ = __webpack_require__(594)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "Modules/Item/Assets/js/components/MyAuctionsList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-609c86dd", Component.options)
+  } else {
+    hotAPI.reload("data-v-609c86dd", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 593 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _axios = __webpack_require__(32);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _formBackendValidation = __webpack_require__(75);
+
+var _formBackendValidation2 = _interopRequireDefault(_formBackendValidation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    data: function data() {
+        return {
+            form: new _formBackendValidation2.default(),
+            search: {
+                name: '',
+                type_id: '',
+                rarity_id: '',
+                mythical: ''
+            },
+            types: [],
+            rarities: [],
+            auctions: [],
+            tableIsLoading: false,
+            isLatest: true,
+            booleanValues: [{
+                value: null,
+                name: 'Any'
+            }, {
+                value: 1,
+                name: 'Yes'
+            }, {
+                value: 0,
+                name: 'No'
+            }]
+        };
+    },
+
+    methods: {
+        searchAuctions: function searchAuctions() {
+            var _this = this;
+
+            this.tableIsLoading = true;
+            _axios2.default.get(route('api.item.my.auctions.search', this.search)).then(function (response) {
+                _this.tableIsLoading = false;
+                _this.auctions = response.data.data;
+                _this.isLatest = false;
+            });
+        },
+        fetchTypes: function fetchTypes() {
+            var _this2 = this;
+
+            _axios2.default.get(route('api.item.type.index')).then(function (response) {
+                _this2.types = response.data.data;
+                _this2.types.unshift({ id: 'any', name: 'Any' });
+            });
+        },
+        fetchRarities: function fetchRarities() {
+            var _this3 = this;
+
+            _axios2.default.get(route('api.item.rarity.index')).then(function (response) {
+                _this3.rarities = response.data.data;
+                _this3.rarities.unshift({ id: 'any', name: 'Any' });
+            });
+        },
+        fetchMyAuctions: function fetchMyAuctions() {
+            var _this4 = this;
+
+            this.tableIsLoading = true;
+            _axios2.default.get(route('api.item.my.auctions.index')).then(function (response) {
+                _this4.tableIsLoading = false;
+                _this4.auctions = response.data.data;
+            });
+        },
+        removeAuction: function removeAuction(auction) {
+            var _this5 = this;
+
+            this.$confirm('Are you sure?', 'Confirm', {
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel',
+                type: 'warning',
+                confirmButtonClass: 'el-button--danger'
+            }).then(function () {
+                var vm = _this5;
+                _axios2.default.delete(route('api.item.my.auctions.delete', { auction: auction.row.id })).then(function (response) {
+                    if (response.data.errors === false) {
+                        vm.$message({
+                            type: 'success',
+                            message: response.data.message
+                        });
+                        _this5.fetchMyAuctions();
+                    }
+                }).catch(function (error) {
+                    vm.$message({
+                        type: 'error',
+                        message: error.data.message
+                    });
+                });
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.fetchTypes();
+        this.fetchRarities();
+        this.fetchMyAuctions();
+    }
+};
+
+/***/ }),
+/* 594 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "box" }, [
+        _c(
+          "div",
+          { staticClass: "box-inner" },
+          [
+            _c("h3", [_vm._v("Search")]),
+            _vm._v(" "),
+            _c(
+              "el-form",
+              {
+                ref: "form",
+                attrs: { model: _vm.search, "label-position": "top" },
+                nativeOn: {
+                  keyup: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key)
+                    ) {
+                      return null
+                    }
+                    _vm.searchAuctions()
+                  }
+                }
+              },
+              [
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Name" } },
+                  [
+                    _c("el-input", {
+                      on: {
+                        blur: function($event) {
+                          _vm.searchAuctions()
+                        }
+                      },
+                      model: {
+                        value: _vm.search.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.search, "name", $$v)
+                        },
+                        expression: "search.name"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Mythical" } },
+                  [
+                    _c(
+                      "el-select",
+                      {
+                        attrs: { placeholder: "Select" },
+                        on: { change: _vm.searchAuctions },
+                        model: {
+                          value: _vm.search.mythical,
+                          callback: function($$v) {
+                            _vm.$set(_vm.search, "mythical", $$v)
+                          },
+                          expression: "search.mythical"
+                        }
+                      },
+                      _vm._l(_vm.booleanValues, function(bool) {
+                        return _c("el-option", {
+                          key: bool.value,
+                          attrs: { label: bool.name, value: bool.value }
+                        })
+                      })
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Type" } },
+                  [
+                    _c(
+                      "el-select",
+                      {
+                        attrs: { placeholder: "Select" },
+                        on: { change: _vm.searchAuctions },
+                        model: {
+                          value: _vm.search.type_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.search, "type_id", $$v)
+                          },
+                          expression: "search.type_id"
+                        }
+                      },
+                      _vm._l(_vm.types, function(type) {
+                        return _c("el-option", {
+                          key: type.id,
+                          attrs: { label: type.name, value: type.id }
+                        })
+                      })
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Rartiry" } },
+                  [
+                    _c(
+                      "el-select",
+                      {
+                        attrs: { placeholder: "Select" },
+                        on: { change: _vm.searchAuctions },
+                        model: {
+                          value: _vm.search.rarity_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.search, "rarity_id", $$v)
+                          },
+                          expression: "search.rarity_id"
+                        }
+                      },
+                      _vm._l(_vm.rarities, function(rarity) {
+                        return _c("el-option", {
+                          key: rarity.id,
+                          attrs: { label: rarity.name, value: rarity.id }
+                        })
+                      })
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "block" },
+                  [
+                    _c(
+                      "el-form-item",
+                      { attrs: { label: "Level Requirement" } },
+                      [
+                        _c("el-slider", {
+                          attrs: {
+                            range: "",
+                            "show-stops": "",
+                            max: 100,
+                            step: 5
+                          },
+                          on: { change: _vm.searchAuctions },
+                          model: {
+                            value: _vm.search.level_range,
+                            callback: function($$v) {
+                              _vm.$set(_vm.search, "level_range", $$v)
+                            },
+                            expression: "search.level_range"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-9" }, [
+      _c("div", { staticClass: "box" }, [
+        _c(
+          "div",
+          { staticClass: "box-inner" },
+          [
+            _c("h3", [_vm._v("My Auctions")]),
+            _vm._v(" "),
+            _c(
+              "el-table",
+              {
+                directives: [
+                  {
+                    name: "loading",
+                    rawName: "v-loading.body",
+                    value: _vm.tableIsLoading,
+                    expression: "tableIsLoading",
+                    modifiers: { body: true }
+                  }
+                ],
+                staticStyle: { width: "100%" },
+                attrs: { data: _vm.auctions, "default-expand-all": true }
+              },
+              [
+                _c("el-table-column", {
+                  attrs: { type: "expand" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(props) {
+                        return [
+                          _c("p", [
+                            _c("strong", [_vm._v("Type")]),
+                            _vm._v(": " + _vm._s(props.row.item.type.name))
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _c("strong", [_vm._v("Rarity")]),
+                            _vm._v(": " + _vm._s(props.row.item.rarity.name))
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _c("strong", [_vm._v("Mythical")]),
+                            _vm._v(
+                              ": " +
+                                _vm._s(
+                                  props.row.item.is_mythical ? "Yes" : "No"
+                                )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _c("strong", [_vm._v("Level requirement")]),
+                            _vm._v(": " + _vm._s(props.row.item.level))
+                          ])
+                        ]
+                      }
+                    }
+                  ])
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { label: "Name", prop: "item.name" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(scope) {
+                        return [
+                          _c(
+                            "span",
+                            { style: "color: " + scope.row.item.rarity.color },
+                            [_vm._v(_vm._s(scope.row.item.name))]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { label: "Time", prop: "time_ago" }
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { prop: "actions", label: "Actions" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(auction) {
+                        return [
+                          _c(
+                            "el-button",
+                            {
+                              attrs: { type: "danger", size: "small" },
+                              on: {
+                                click: function($event) {
+                                  _vm.removeAuction(auction)
+                                }
+                              }
+                            },
+                            [_vm._v("Remove")]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-609c86dd", module.exports)
+  }
+}
+
+/***/ }),
+/* 595 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(596);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(111)("e2f36592", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-609c86dd\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MyAuctionsList.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-609c86dd\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MyAuctionsList.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 596 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(110)(undefined);

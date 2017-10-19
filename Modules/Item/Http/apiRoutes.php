@@ -24,6 +24,19 @@ $router->post('auction/store', [
     'uses' => 'AuctionController@store',
 ]);
 
+$router->get('my/auctions', [
+    'as' => 'api.item.my.auctions.index',
+    'uses' => 'MyAuctionController@index',
+]);
+$router->get('my/auctions/search', [
+    'as' => 'api.item.my.auctions.search',
+    'uses' => 'MyAuctionController@search',
+]);
+$router->delete('my/auctions/{auction}', [
+    'as' => 'api.item.my.auctions.delete',
+    'uses' => 'MyAuctionController@delete',
+]);
+
 $router->get('types', [
     'as' => 'api.item.type.index',
     'uses' => 'TypeController@index',
