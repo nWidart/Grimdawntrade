@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4f50cc160b7e3ff63f2f6ca282ca3f2",
+    "content-hash": "7f6a2b8adbbb84d53d2307c4b8f6e779",
     "packages": [
         {
             "name": "cartalyst/sentinel",
@@ -1577,64 +1577,6 @@
             ],
             "description": "Module containing all AsgardCms translations",
             "time": "2017-10-16T08:02:18+00:00"
-        },
-        {
-            "name": "idavoll/user-module",
-            "version": "3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Idavoll/User.git",
-                "reference": "44131b8119608b7dc83f315fd994569e80a39469"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Idavoll/User/zipball/44131b8119608b7dc83f315fd994569e80a39469",
-                "reference": "44131b8119608b7dc83f315fd994569e80a39469",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0",
-                "php": ">=7.0.0",
-                "ramsey/uuid": "^3.4"
-            },
-            "require-dev": {
-                "fzaninotto/faker": "~1.5",
-                "mockery/mockery": "^0.9.4",
-                "orchestra/testbench": "3.5.*",
-                "phpunit/phpunit": "~6.0",
-                "scrutinizer/ocular": "~1.1"
-            },
-            "type": "asgard-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Modules\\User\\": ".",
-                    "Modules\\": "Modules/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Widart",
-                    "email": "info@asgardcms.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "User module for AsgardCMS. Handles the authentication and authorisation as well as the user management.",
-            "keywords": [
-                "Authentication",
-                "asgardcms",
-                "authorisation",
-                "user"
-            ],
-            "time": "2017-10-17T09:38:45+00:00"
         },
         {
             "name": "idavoll/workshop-module",
