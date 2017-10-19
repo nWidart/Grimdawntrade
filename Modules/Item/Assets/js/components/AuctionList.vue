@@ -19,7 +19,7 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="Type">
-                            <el-select v-model="search.type_id" placeholder="Select" @change="searchAuctions">
+                            <el-select v-model="search.type_id" placeholder="Select" clearable filterable @change="searchAuctions">
                                 <el-option
                                         v-for="type in types"
                                         :key="type.id"
@@ -29,7 +29,7 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="Rartiry">
-                            <el-select v-model="search.rarity_id" placeholder="Select" @change="searchAuctions">
+                            <el-select v-model="search.rarity_id" placeholder="Select" clearable filterable @change="searchAuctions">
                                 <el-option
                                         v-for="rarity in rarities"
                                         :key="rarity.id"

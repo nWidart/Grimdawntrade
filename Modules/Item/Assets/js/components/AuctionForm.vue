@@ -34,7 +34,7 @@
                         <el-checkbox v-model="item.is_mythical">Mythical</el-checkbox>
                     </el-form-item>
                     <el-form-item label="Type">
-                        <el-select v-model="item.type_id" placeholder="Select">
+                        <el-select v-model="item.type_id" clearable filterable placeholder="Select">
                             <el-option
                                     v-for="type in types"
                                     :key="type.id"
@@ -44,7 +44,7 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="Rarity">
-                        <el-select v-model="item.rarity_id" placeholder="Select">
+                        <el-select v-model="item.rarity_id" clearable filterable placeholder="Select">
                             <el-option
                                     v-for="rarity in rarities"
                                     :key="rarity.id"
