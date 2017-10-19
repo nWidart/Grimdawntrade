@@ -83905,7 +83905,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "Rartiry" } },
+                { attrs: { label: "Rarity" } },
                 [
                   _c(
                     "el-select",
