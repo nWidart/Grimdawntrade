@@ -87698,11 +87698,15 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
     data: function data() {
-        return {};
+        return {
+            activePage: 'auction.index'
+        };
     },
 
     methods: {},
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        this.activePage = this.$route.name;
+    }
 };
 
 /***/ }),
@@ -87721,7 +87725,11 @@ var render = function() {
         {
           staticClass: "el-menu-demo",
           staticStyle: { "margin-bottom": "20px" },
-          attrs: { "default-active": "home", mode: "horizontal", router: true }
+          attrs: {
+            "default-active": _vm.activePage,
+            mode: "horizontal",
+            router: true
+          }
         },
         [
           _c("div", { staticClass: "container" }, [
@@ -87733,7 +87741,10 @@ var render = function() {
                   _c(
                     "el-menu-item",
                     {
-                      attrs: { index: "home", route: { name: "auction.index" } }
+                      attrs: {
+                        index: "auction.index",
+                        route: { name: "auction.index" }
+                      }
                     },
                     [_vm._v("Grim Dawn Trade")]
                   ),
@@ -87741,7 +87752,10 @@ var render = function() {
                   _c(
                     "el-menu-item",
                     {
-                      attrs: { index: "post", route: { name: "auction.new" } }
+                      attrs: {
+                        index: "auction.new",
+                        route: { name: "auction.new" }
+                      }
                     },
                     [_vm._v("Post Item")]
                   ),
@@ -87750,7 +87764,7 @@ var render = function() {
                     "el-menu-item",
                     {
                       attrs: {
-                        index: "my-items",
+                        index: "auction.owner",
                         route: { name: "auction.owner" }
                       }
                     },
