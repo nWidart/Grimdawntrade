@@ -43,7 +43,7 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="Rartiry">
+                    <el-form-item label="Rarity">
                         <el-select v-model="item.rarity_id" placeholder="Select">
                             <el-option
                                     v-for="rarity in rarities"
