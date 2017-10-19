@@ -55,8 +55,8 @@ class AuthController extends BasePublicController
     {
         app(UserRegistration::class)->register($request->all());
 
-        return redirect()->route('register')
-            ->withSuccess(trans('user::messages.account created check email for activation'));
+        return redirect()->route('login')
+            ->withSuccess('Account created. You can now log in.');
     }
 
     public function getLogout()
