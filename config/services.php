@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'mandrill' => [
+        'secret' => getenv('MANDRILL_API'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
