@@ -67,7 +67,7 @@ class AuctionController extends Controller
             'user_id' => $this->findUserWithBearerToken($request->header('Authorization'))->id,
         ]);
 
-        $auction->prices()->attach($request->get('trade_for'));
+        $auction->prices()->attach($this->parseTradeForItems($request->get('trade_for')));
 
         return response()->json([
             'errors' => false,
@@ -90,5 +90,22 @@ class AuctionController extends Controller
         }
 
         return $item;
+    }
+
+    private function parseTradeForItems($items)
+    {
+        $itemIds = [];
+        foreach ($items as $itemIdOrName) {
+            $item = Item::find($itemIdOrName);
+
+            if ($item === null) {
+                $item = Item::create([
+                    'name' => $itemIdOrName,
+                ]);
+            }
+            $itemIds[] = $item->id;
+        }
+
+        return $itemIds;
     }
 }
