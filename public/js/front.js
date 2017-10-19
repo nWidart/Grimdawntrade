@@ -86810,6 +86810,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 
 exports.default = {
     data: function data() {
@@ -86825,6 +86826,7 @@ exports.default = {
             rarities: [],
             auctions: [],
             tableIsLoading: false,
+            isLatest: true,
             booleanValues: [{
                 value: null,
                 name: 'Any'
@@ -86846,6 +86848,7 @@ exports.default = {
             _axios2.default.get(route('api.item.auction.search', this.search)).then(function (response) {
                 _this.tableIsLoading = false;
                 _this.auctions = response.data.data;
+                _this.isLatest = false;
             });
         },
         fetchTypes: function fetchTypes() {
@@ -87067,7 +87070,9 @@ var render = function() {
           "div",
           { staticClass: "box-inner" },
           [
-            _c("h3", [_vm._v("Auctions")]),
+            _vm.isLatest ? _c("h3", [_vm._v("Latest auctions")]) : _vm._e(),
+            _vm._v(" "),
+            !_vm.isLatest ? _c("h3", [_vm._v("Search results")]) : _vm._e(),
             _vm._v(" "),
             _c(
               "el-table",

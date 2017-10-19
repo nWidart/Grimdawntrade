@@ -59,7 +59,8 @@
         <div class="col-md-9">
             <div class="box">
                 <div class="box-inner">
-                    <h3>Auctions</h3>
+                    <h3 v-if="isLatest">Latest auctions</h3>
+                    <h3 v-if="! isLatest">Search results</h3>
                     <el-table
                             :data="auctions"
                             style="width: 100%"
@@ -109,6 +110,7 @@
                 rarities: [],
                 auctions: [],
                 tableIsLoading: false,
+                isLatest: true,
                 booleanValues: [
                     {
                         value: null,
@@ -132,6 +134,7 @@
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.auctions = response.data.data;
+                        this.isLatest = false;
                     });
             },
             fetchTypes() {
