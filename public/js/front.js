@@ -84873,6 +84873,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -85183,29 +85189,37 @@ var render = function() {
                       key: "default",
                       fn: function(props) {
                         return [
-                          _c("p", [
-                            _c("strong", [_vm._v("Type")]),
-                            _vm._v(": " + _vm._s(props.row.item.type.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _c("strong", [_vm._v("Rarity")]),
-                            _vm._v(": " + _vm._s(props.row.item.rarity.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _c("strong", [_vm._v("Mythical")]),
-                            _vm._v(
-                              ": " +
-                                _vm._s(
-                                  props.row.item.is_mythical ? "Yes" : "No"
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("p", [
+                                _c("strong", [_vm._v("Type")]),
+                                _vm._v(": " + _vm._s(props.row.item.type.name))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Rarity")]),
+                                _vm._v(
+                                  ": " + _vm._s(props.row.item.rarity.name)
                                 )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _c("strong", [_vm._v("Level requirement")]),
-                            _vm._v(": " + _vm._s(props.row.item.level))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("p", [
+                                _c("strong", [_vm._v("Mythical")]),
+                                _vm._v(
+                                  ": " +
+                                    _vm._s(
+                                      props.row.item.is_mythical ? "Yes" : "No"
+                                    )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Level requirement")]),
+                                _vm._v(": " + _vm._s(props.row.item.level))
+                              ])
+                            ])
                           ])
                         ]
                       }

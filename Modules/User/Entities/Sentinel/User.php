@@ -21,6 +21,8 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
         'permissions',
         'first_name',
         'last_name',
+        'display_name',
+        'steam_profile_link',
     ];
 
     /**
