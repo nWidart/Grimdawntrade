@@ -100,6 +100,15 @@
                                 prop="time_ago"
                                 sortable>
                         </el-table-column>
+                        <el-table-column prop="actions" label="Actions">
+                            <template slot-scope="scope">
+                                <el-button size="small"
+                                           @click="goToSteamProfile(scope)"
+                                            v-if="scope.row.user.steam_profile_link !== null">
+                                    Steam Profile
+                                </el-button>
+                            </template>
+                        </el-table-column>
                     </el-table>
                 </div>
             </div>
@@ -179,6 +188,9 @@
                     return rarity.color;
                 }
                 return '#000';
+            },
+            goToSteamProfile(scope) {
+                window.open(scope.row.user.steam_profile_link, '_blank');
             },
         },
         mounted() {

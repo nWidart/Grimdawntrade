@@ -84263,6 +84263,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -84333,6 +84342,9 @@ exports.default = {
                 return rarity.color;
             }
             return '#000';
+        },
+        goToSteamProfile: function goToSteamProfile(scope) {
+            window.open(scope.row.user.steam_profile_link, '_blank');
         }
     },
     mounted: function mounted() {
@@ -84645,6 +84657,37 @@ var render = function() {
                 _vm._v(" "),
                 _c("el-table-column", {
                   attrs: { label: "Time", prop: "time_ago", sortable: "" }
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { prop: "actions", label: "Actions" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(scope) {
+                        return [
+                          scope.row.user.steam_profile_link !== null
+                            ? _c(
+                                "el-button",
+                                {
+                                  attrs: { size: "small" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.goToSteamProfile(scope)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Steam Profile\n                            "
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ]
+                      }
+                    }
+                  ])
                 })
               ],
               1

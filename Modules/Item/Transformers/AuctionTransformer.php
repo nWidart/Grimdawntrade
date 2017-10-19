@@ -14,7 +14,8 @@ class AuctionTransformer extends Resource
             'item' => new ItemTransformer($this->item),
             'user' => [
                 'id' => $this->user->id,
-                'steam_profile' => $this->user->steam_profile,
+                'steam_profile_link' => $this->user->steam_profile_link,
+                'display_name' => $this->user->display_name,
             ],
             'prices' => $this->prices->load(['rarity', 'type']),
         ];
