@@ -15,7 +15,7 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
         UserHasRegistered::class => [
-            SendRegistrationConfirmationEmail::class,
+            // SendRegistrationConfirmationEmail::class,
         ],
         UserHasBegunResetProcess::class => [
             SendResetCodeEmail::class,
