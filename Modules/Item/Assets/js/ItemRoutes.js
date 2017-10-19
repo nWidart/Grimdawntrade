@@ -4,7 +4,7 @@ import MyAuctionsList from './components/MyAuctionsList.vue';
 
 export default [
     {
-        path: '/auctions',
+        path: '/',
         name: 'auction.index',
         component: AuctionList,
     },

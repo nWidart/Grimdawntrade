@@ -83459,7 +83459,7 @@ var _MyAuctionsList2 = _interopRequireDefault(_MyAuctionsList);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = [{
-    path: '/auctions',
+    path: '/',
     name: 'auction.index',
     component: _AuctionList2.default
 }, {

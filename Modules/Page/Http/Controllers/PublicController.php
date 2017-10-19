@@ -48,13 +48,7 @@ class PublicController extends BasePublicController
      */
     public function homepage()
     {
-        $page = $this->page->findHomepage();
-
-        $this->throw404IfNotFound($page);
-
-        $template = $this->getTemplateForPage($page);
-
-        return view($template, compact('page'));
+        return view('vuejs');
     }
 
     /**
