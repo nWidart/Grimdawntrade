@@ -34,7 +34,9 @@ class PublicController extends BasePublicController
     {
         $page = $this->findPageForSlug($slug);
 
-        $this->throw404IfNotFound($page);
+        if ($page === null) {
+            return view('vuejs');
+        }
 
         $template = $this->getTemplateForPage($page);
 
