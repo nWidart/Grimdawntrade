@@ -71,8 +71,8 @@
                 <div class="box-inner">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 v-if="isLatest">Latest auctions</h3>
-                            <h3 v-if="! isLatest">Search results</h3>
+                            <h3 v-if="isLatest">Latest auctions <span class="label label-primary">{{ auctions.length }}</span></h3>
+                            <h3 v-if="! isLatest">Search results <span class="label label-primary">{{ auctions.length }}</span></h3>
                         </div>
                         <div class="col-md-6">
                             <el-button class="pull-right" size="small" @click="refreshList()">Refresh</el-button>
