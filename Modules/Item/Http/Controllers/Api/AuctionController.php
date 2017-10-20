@@ -47,6 +47,9 @@ class AuctionController extends Controller
                 $query->where('is_mythical', $mythical);
             });
         }
+        if ($request->get('hardcore') !== 'null' && $request->get('hardcore') !== null) {
+            $auctions->where('is_hardcore', $request->get('hardcore'));
+        }
         if ($request->get('level_range')) {
             list($min, $max) = explode(',', $request->get('level_range'));
             $auctions->whereHas('item', function ($query) use ($min, $max) {

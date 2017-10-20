@@ -8,6 +8,16 @@
                         <el-form-item label="Name">
                             <el-input v-model="search.name" @blur="searchAuctions()"></el-input>
                         </el-form-item>
+                        <el-form-item label="Hardcore">
+                            <el-select v-model="search.hardcore" placeholder="Select" @change="searchAuctions">
+                                <el-option
+                                        v-for="bool in booleanValues"
+                                        :key="bool.value"
+                                        :label="bool.name"
+                                        :value="bool.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
                         <el-form-item label="Mythical">
                             <el-select v-model="search.mythical" placeholder="Select" @change="searchAuctions">
                                 <el-option
