@@ -12,6 +12,10 @@
                     </el-form-item>
                     <el-form-item label="Steam Profile Link">
                         <el-input v-model="profile.steam_profile_link"></el-input>
+                        <ul>
+                            <li><a href="https://steamcommunity.com/discussions/forum/1/618458030664854265/" target="_blank">How to find profile URL</a></li>
+                            <li><a href="https://support.steampowered.com/kb_article.php?ref=4113-YUDH-6401" target="_blank">How to make profile public</a></li>
+                        </ul>
                     </el-form-item>
 
                     <el-form-item>

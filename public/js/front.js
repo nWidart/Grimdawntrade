@@ -85691,6 +85691,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -85803,7 +85807,37 @@ var render = function() {
                       },
                       expression: "profile.steam_profile_link"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("ul", [
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              "https://steamcommunity.com/discussions/forum/1/618458030664854265/",
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("How to find profile URL")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              "https://support.steampowered.com/kb_article.php?ref=4113-YUDH-6401",
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("How to make profile public")]
+                      )
+                    ])
+                  ])
                 ],
                 1
               ),
