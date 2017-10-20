@@ -110,15 +110,16 @@
                                 label="Name"
                                 prop="item.name">
                             <template slot-scope="scope">
-                                <span :style="`color: ${scope.row.item.rarity.color}`">{{ scope.row.item.name }}</span>
+                                <span :style="`color: ${getColor(scope.row.item.rarity)}`">{{ scope.row.item.name }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column
                                 label="Time"
                                 prop="time_ago"
+                                width="150"
                                 sortable>
                         </el-table-column>
-                        <el-table-column prop="actions" label="Actions">
+                        <el-table-column prop="actions" label="Actions" width="130">
                             <template slot-scope="scope">
                                 <el-button size="small"
                                            @click="goToSteamProfile(scope)"
