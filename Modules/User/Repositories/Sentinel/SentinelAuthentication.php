@@ -43,7 +43,7 @@ class SentinelAuthentication implements Authentication
      */
     public function register(array $user)
     {
-        return Sentinel::registerAndActivate((array) $user);
+        return Sentinel::getUserRepository()->create((array) $user);
     }
 
     /**
