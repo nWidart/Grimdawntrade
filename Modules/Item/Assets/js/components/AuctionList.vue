@@ -87,8 +87,8 @@
                             <template slot-scope="props">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p><strong>Type</strong>: {{ props.row.item.type.name }}</p>
-                                        <p><strong>Rarity</strong>: {{ props.row.item.rarity.name }}</p>
+                                        <p><strong>Type</strong>: {{ props.row.item.type ? props.row.item.type.name : '' }}</p>
+                                        <p><strong>Rarity</strong>: {{ props.row.item.rarity ? props.row.item.rarity.name : '' }}</p>
                                         <p><strong>Hardcore</strong>: {{ props.row.is_hardcore ? 'Yes' : 'No' }}</p>
                                     </div>
                                     <div class="col-md-6">

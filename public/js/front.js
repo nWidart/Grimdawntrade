@@ -84687,13 +84687,25 @@ var render = function() {
                             _c("div", { staticClass: "col-md-6" }, [
                               _c("p", [
                                 _c("strong", [_vm._v("Type")]),
-                                _vm._v(": " + _vm._s(props.row.item.type.name))
+                                _vm._v(
+                                  ": " +
+                                    _vm._s(
+                                      props.row.item.type
+                                        ? props.row.item.type.name
+                                        : ""
+                                    )
+                                )
                               ]),
                               _vm._v(" "),
                               _c("p", [
                                 _c("strong", [_vm._v("Rarity")]),
                                 _vm._v(
-                                  ": " + _vm._s(props.row.item.rarity.name)
+                                  ": " +
+                                    _vm._s(
+                                      props.row.item.rarity
+                                        ? props.row.item.rarity.name
+                                        : ""
+                                    )
                                 )
                               ]),
                               _vm._v(" "),
