@@ -11,6 +11,10 @@ class Auction extends Model
     protected $fillable = [
         'item_id',
         'user_id',
+        'is_hardcore',
+    ];
+    protected $casts = [
+        'is_hardcore' => 'bool',
     ];
 
     public function item()
