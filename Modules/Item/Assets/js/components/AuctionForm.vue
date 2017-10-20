@@ -30,6 +30,9 @@
                     <el-form-item label="Item minimum level">
                         <el-input v-model="item.level" type="number"></el-input>
                     </el-form-item>
+                    <el-form-item label="Hardcore">
+                        <el-checkbox v-model="item.is_hardcore">Hardcore?</el-checkbox>
+                    </el-form-item>
                     <el-form-item label="Mythical">
                         <el-checkbox v-model="item.is_mythical">Mythical</el-checkbox>
                     </el-form-item>
@@ -97,6 +100,7 @@
                     type_id: '',
                     rarity_id: '',
                     is_mythical: 0,
+                    is_hardcore: 0,
                     level: '',
                 },
                 trade_for: [],

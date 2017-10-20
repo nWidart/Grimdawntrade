@@ -66,6 +66,7 @@ class AuctionController extends Controller
         $auction = Auction::create([
             'item_id' => $item->id,
             'user_id' => $this->findUserWithBearerToken($request->header('Authorization'))->id,
+            'is_hardcore' => $request->get('is_hardcore'),
         ]);
 
         $auction->prices()->attach($this->parseTradeForItems($request->get('trade_for')));
