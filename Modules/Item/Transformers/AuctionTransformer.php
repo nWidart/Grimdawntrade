@@ -11,6 +11,7 @@ class AuctionTransformer extends Resource
         return [
             'id' => $this->id,
             'time_ago' => $this->created_at->diffForHumans(),
+            'is_hardcore' => $this->is_hardcore,
             'item' => new ItemTransformer($this->item),
             'user' => [
                 'id' => $this->user->id,

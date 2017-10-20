@@ -8,6 +8,16 @@
                         <el-form-item label="Name">
                             <el-input v-model="search.name" @blur="searchAuctions()"></el-input>
                         </el-form-item>
+                        <el-form-item label="Hardcore">
+                            <el-select v-model="search.hardcore" placeholder="Select" @change="searchAuctions">
+                                <el-option
+                                        v-for="bool in booleanValues"
+                                        :key="bool.value"
+                                        :label="bool.name"
+                                        :value="bool.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
                         <el-form-item label="Mythical">
                             <el-select v-model="search.mythical" placeholder="Select" @change="searchAuctions">
                                 <el-option
@@ -71,6 +81,7 @@
                                     <div class="col-md-6">
                                         <p><strong>Type</strong>: {{ props.row.item.type.name }}</p>
                                         <p><strong>Rarity</strong>: {{ props.row.item.rarity.name }}</p>
+                                        <p><strong>Hardcore</strong>: {{ props.row.is_hardcore ? 'Yes' : 'No' }}</p>
                                     </div>
                                     <div class="col-md-6">
                                         <p><strong>Mythical</strong>: {{ props.row.item.is_mythical ? 'Yes' : 'No' }}</p>

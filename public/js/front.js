@@ -84322,6 +84322,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 
 exports.default = {
     data: function data() {
@@ -84693,6 +84694,14 @@ var render = function() {
                                 _vm._v(
                                   ": " + _vm._s(props.row.item.rarity.name)
                                 )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Hardcore")]),
+                                _vm._v(
+                                  ": " +
+                                    _vm._s(props.row.is_hardcore ? "Yes" : "No")
+                                )
                               ])
                             ]),
                             _vm._v(" "),
@@ -85040,6 +85049,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -85192,6 +85212,34 @@ var render = function() {
                         expression: "search.name"
                       }
                     })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Hardcore" } },
+                  [
+                    _c(
+                      "el-select",
+                      {
+                        attrs: { placeholder: "Select" },
+                        on: { change: _vm.searchAuctions },
+                        model: {
+                          value: _vm.search.hardcore,
+                          callback: function($$v) {
+                            _vm.$set(_vm.search, "hardcore", $$v)
+                          },
+                          expression: "search.hardcore"
+                        }
+                      },
+                      _vm._l(_vm.booleanValues, function(bool) {
+                        return _c("el-option", {
+                          key: bool.value,
+                          attrs: { label: bool.name, value: bool.value }
+                        })
+                      })
+                    )
                   ],
                   1
                 ),
@@ -85361,6 +85409,14 @@ var render = function() {
                                 _c("strong", [_vm._v("Rarity")]),
                                 _vm._v(
                                   ": " + _vm._s(props.row.item.rarity.name)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Hardcore")]),
+                                _vm._v(
+                                  ": " +
+                                    _vm._s(props.row.is_hardcore ? "Yes" : "No")
                                 )
                               ])
                             ]),

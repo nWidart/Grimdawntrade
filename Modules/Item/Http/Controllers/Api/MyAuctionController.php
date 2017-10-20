@@ -44,6 +44,9 @@ class MyAuctionController extends Controller
                 $query->where('rarity_id', $rarityId);
             });
         }
+        if ($request->get('hardcore') !== 'null' && $request->get('hardcore') !== null) {
+            $auctions->where('is_hardcore', $request->get('hardcore'));
+        }
         if ($request->get('mythical') !== 'null' && $request->get('mythical') !== null) {
             $mythical = $request->get('mythical');
             $auctions->whereHas('item', function ($query) use ($mythical) {
@@ -57,6 +60,7 @@ class MyAuctionController extends Controller
                 $query->where('level', '<=', $max);
             });
         }
+        $auctions->orderBy('created_at', 'desc');
 
         return AuctionTransformer::collection($auctions->get());
     }
