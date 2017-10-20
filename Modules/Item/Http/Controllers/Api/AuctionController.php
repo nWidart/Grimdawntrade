@@ -91,6 +91,7 @@ class AuctionController extends Controller
                 'level',
                 'type_id',
                 'rarity_id',
+                'link',
             ]));
         }
 

@@ -13,6 +13,7 @@ class ItemTransformer extends Resource
             'name' => $this->name,
             'is_mythical' => $this->is_mythical,
             'level' => $this->level,
+            'link' => $this->link,
             'type_id' => optional($this->type)->id,
             'rarity_id' => optional($this->rarity)->id,
             'rarity' => new RarityTransformer($this->rarity),

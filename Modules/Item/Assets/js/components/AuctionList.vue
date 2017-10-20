@@ -94,6 +94,7 @@
                                     <div class="col-md-6">
                                         <p><strong>Mythical</strong>: {{ props.row.item.is_mythical ? 'Yes' : 'No' }}</p>
                                         <p><strong>Level requirement</strong>: {{ props.row.item.level }}</p>
+                                        <p v-if="props.row.item.link"><strong>Grimtools URL</strong>: <a :href="props.row.item.link" target="_blank">View on Grimtools.com</a></p>
                                     </div>
                                     <div class="col-md-12">
                                         <div v-if="props.row.prices.length > 0">

@@ -57,6 +57,10 @@
                         </el-select>
                     </el-form-item>
 
+                    <el-form-item label="Grimtools URL">
+                        <el-input v-model="item.link"></el-input>
+                    </el-form-item>
+
                     <hr>
 
                     <el-form-item label="Price">
@@ -76,6 +80,7 @@
                                     :value="item.id">
                             </el-option>
                         </el-select>
+
                     </el-form-item>
 
                     <el-form-item>
@@ -97,6 +102,7 @@
             return {
                 item: {
                     name: '',
+                    link: '',
                     type_id: '',
                     rarity_id: '',
                     is_mythical: 0,
