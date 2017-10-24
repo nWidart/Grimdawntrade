@@ -134,3 +134,7 @@ $router->group(['prefix' => '/account'], function (Router $router) {
         'uses' => 'PublicProfileController@update',
     ]);
 });
+$router->get('find-user/{user}', [
+    'as' => 'p.api.find-user',
+    'uses' => 'PublicProfileController@findUser',
+]);

@@ -19,7 +19,7 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="Mythical">
-                            <el-select v-model="search.mythical" placeholder="Select" @change="searchAuctions">
+                            <el-select v-model="search.mythical" placeholder="Select" clearable filterable @change="searchAuctions">
                                 <el-option
                                         v-for="bool in booleanValues"
                                         :key="bool.value"
@@ -29,7 +29,7 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="Type">
-                            <el-select v-model="search.type_id" placeholder="Select" @change="searchAuctions">
+                            <el-select v-model="search.type_id" placeholder="Select" clearable filterable @change="searchAuctions">
                                 <el-option
                                         v-for="type in types"
                                         :key="type.id"
@@ -39,7 +39,7 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="Rarity">
-                            <el-select v-model="search.rarity_id" placeholder="Select" @change="searchAuctions">
+                            <el-select v-model="search.rarity_id" placeholder="Select" clearable filterable @change="searchAuctions">
                                 <el-option
                                         v-for="rarity in rarities"
                                         :key="rarity.id"
@@ -69,10 +69,7 @@
         <div class="col-md-9">
             <div class="box">
                 <div class="box-inner">
-                    <h3>My Auctions</h3>
-                    <el-input v-model="personalUrl">
-                        <el-button slot="prepend" @click="openPublicList">Public Item List</el-button>
-                    </el-input>
+                    <h3>Auctions of {{ currentUser.display_name }} <span class="label label-primary">{{ auctions.length }}</span></h3>
                     <el-table
                             :data="auctions"
                             style="width: 100%"
@@ -90,6 +87,14 @@
                                         <p><strong>Mythical</strong>: {{ props.row.item.is_mythical ? 'Yes' : 'No' }}</p>
                                         <p><strong>Level requirement</strong>: {{ props.row.item.level }}</p>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div v-if="props.row.prices.length > 0">
+                                            <strong>Wanted items:</strong>
+                                            <span v-for="(item, idx) in props.row.prices" :key="idx">
+                                                <span :style="`color: ${getColor(item.rarity)}`">{{ item.name }}</span>,
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </template>
                         </el-table-column>
@@ -97,16 +102,21 @@
                                 label="Name"
                                 prop="item.name">
                             <template slot-scope="scope">
-                                <span :style="`color: ${scope.row.item.rarity.color}`">{{ scope.row.item.name }}</span>
+                                <span :style="`color: ${getColor(scope.row.item.rarity)}`">{{ scope.row.item.name }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column
                                 label="Time"
+                                width="150"
                                 prop="time_ago">
                         </el-table-column>
-                        <el-table-column prop="actions" label="Actions">
+                        <el-table-column prop="actions" label="Actions" width="130">
                             <template slot-scope="auction">
-                                <el-button type="danger" size="small" @click="removeAuction(auction)">Remove</el-button>
+                                <el-button size="small"
+                                           @click="goToSteamProfile(scope)"
+                                           v-if="auction.row.user.steam_profile_link !== null">
+                                    Steam Profile
+                                </el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -152,15 +162,11 @@
                 ],
             };
         },
-        computed: {
-            personalUrl() {
-                return `${window.AsgardCMS.appUrl}/auctions/list/${this.currentUser.id}`;
-            },
-        },
         methods: {
             searchAuctions() {
                 this.tableIsLoading = true;
-                axios.get(route('api.item.my.auctions.search', this.search))
+                const { userId } = this.$route.params;
+                axios.get(route('api.item.list.auctions.search', _.merge(this.search, { user: userId })))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.auctions = response.data.data;
@@ -181,55 +187,37 @@
                         this.rarities.unshift({ id: 'any', name: 'Any' });
                     });
             },
-            fetchMyAuctions() {
+            fetchUserAuctions() {
                 this.tableIsLoading = true;
-                axios.get(route('api.item.my.auctions.index'))
+                const { userId } = this.$route.params;
+                axios.get(route('api.item.list.auctions.index', { user: userId }))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.auctions = response.data.data;
                     });
             },
-            removeAuction(auction) {
-                this.$confirm('Are you sure?', 'Confirm', {
-                    confirmButtonText: 'Delete',
-                    cancelButtonText: 'Cancel',
-                    type: 'warning',
-                    confirmButtonClass: 'el-button--danger',
-                }).then(() => {
-                    const vm = this;
-                    axios.delete(route('api.item.my.auctions.delete', { auction: auction.row.id }))
-                        .then((response) => {
-                            if (response.data.errors === false) {
-                                vm.$message({
-                                    type: 'success',
-                                    message: response.data.message,
-                                });
-                                this.fetchMyAuctions();
-                            }
-                        })
-                        .catch((error) => {
-                            vm.$message({
-                                type: 'error',
-                                message: error.data.message,
-                            });
-                        });
-                });
-            },
-            fetchCurrentUser() {
-                axios.get(route('p.api.account.profile.find-current-user'))
+            findUser() {
+                const { userId } = this.$route.params;
+                axios.get(route('p.api.find-user', { user: userId }))
                     .then((response) => {
                         this.currentUser = response.data.data;
                     });
             },
-            openPublicList() {
-                window.open(this.personalUrl, '_blank');
+            goToSteamProfile(scope) {
+                window.open(scope.row.user.steam_profile_link, '_blank');
+            },
+            getColor(rarity) {
+                if (rarity !== null) {
+                    return rarity.color;
+                }
+                return '#000';
             },
         },
         mounted() {
             this.fetchTypes();
             this.fetchRarities();
-            this.fetchMyAuctions();
-            this.fetchCurrentUser();
+            this.fetchUserAuctions();
+            this.findUser();
         },
     };
 </script>

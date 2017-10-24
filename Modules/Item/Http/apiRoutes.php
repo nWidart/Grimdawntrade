@@ -37,6 +37,15 @@ $router->delete('my/auctions/{auction}', [
     'uses' => 'MyAuctionController@delete',
 ]);
 
+$router->get('auctions/list/{user}', [
+    'as' => 'api.item.list.auctions.index',
+    'uses' => 'UserListAuctionController@index',
+]);
+$router->get('auctions/list/{user}/search', [
+    'as' => 'api.item.list.auctions.search',
+    'uses' => 'UserListAuctionController@search',
+]);
+
 $router->get('types', [
     'as' => 'api.item.type.index',
     'uses' => 'TypeController@index',

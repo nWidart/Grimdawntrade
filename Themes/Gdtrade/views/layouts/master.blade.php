@@ -25,6 +25,7 @@
     window.AsgardCMS = {
         currentLocale: '{{ locale() }}',
         adminPrefix: '{{ config('asgard.core.core.admin-prefix') }}',
+        appUrl: '{{ config('app.url') }}'
     };
 </script>
 <script

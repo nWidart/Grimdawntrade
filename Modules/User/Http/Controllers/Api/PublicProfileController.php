@@ -5,6 +5,7 @@ namespace Modules\User\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\User\Contracts\Authentication;
+use Modules\User\Entities\Sentinel\User;
 use Modules\User\Http\Requests\UpdateProfileRequest;
 use Modules\User\Http\Requests\UpdatePublicProfileRequest;
 use Modules\User\Repositories\UserRepository;
@@ -27,6 +28,11 @@ class PublicProfileController extends Controller
     public function findCurrentUser(Request $request)
     {
         return new UserProfileTransformer($this->findUserWithBearerToken($request->header('Authorization')));
+    }
+
+    public function findUser(User $user)
+    {
+        return new UserProfileTransformer($user);
     }
 
     public function update(UpdatePublicProfileRequest $request)

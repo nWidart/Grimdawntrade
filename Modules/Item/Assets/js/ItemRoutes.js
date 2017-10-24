@@ -1,6 +1,7 @@
 import AuctionForm from './components/AuctionForm.vue';
 import AuctionList from './components/AuctionList.vue';
 import MyAuctionsList from './components/MyAuctionsList.vue';
+import UserAuctionsList from './components/UserAuctionsList.vue';
 
 export default [
     {
@@ -31,5 +32,10 @@ export default [
             }
             next();
         },
+    },
+    {
+        path: '/auctions/list/:userId',
+        name: 'auction.list.index',
+        component: UserAuctionsList,
     },
 ];
