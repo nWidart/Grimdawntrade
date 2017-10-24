@@ -113,7 +113,7 @@
                         <el-table-column prop="actions" label="Actions" width="130">
                             <template slot-scope="auction">
                                 <el-button size="small"
-                                           @click="goToSteamProfile(scope)"
+                                           @click="goToSteamProfile(auction)"
                                            v-if="auction.row.user.steam_profile_link !== null">
                                     Steam Profile
                                 </el-button>
