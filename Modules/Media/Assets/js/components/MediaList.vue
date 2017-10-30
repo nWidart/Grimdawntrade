@@ -105,7 +105,7 @@
                                                         v-if="scope.row.is_folder && canEditFolders">
                                                     <i class="fa fa-pencil"></i>
                                                 </el-button>
-                                                <delete-button :scope="scope" :rows="data"></delete-button>
+                                                <delete-button :slot-scope="scope" :rows="data"></delete-button>
                                             </el-button-group>
                                         </div>
                                     </div>
